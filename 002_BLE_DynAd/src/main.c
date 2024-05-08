@@ -13,7 +13,7 @@ static unsigned char url_data[] ={0x17,'/','/','a','c','a','d','e','m','y','.',
                                  'c','o','m'};
 
 //Control advertising params
-static struct bt_le_adv_param *param = BT_LE_ADV_PARAM(BT_LE_ADV_OPT_NONE, 800, 801, NULL);
+static struct bt_le_adv_param *adv_param = BT_LE_ADV_PARAM(BT_LE_ADV_OPT_NONE, 800, 801, NULL);
 
 //declare the struct for custom data
 typedef struct adv_mfg_data
@@ -65,7 +65,7 @@ int main(void)
         dk_leds_init(); 
         init_button();
         int err = bt_enable(NULL); //Enable BT
-        err = bt_le_adv_start(BT_LE_ADV_NCONN, ad, ARRAY_SIZE(ad), sd, ARRAY_SIZE(sd));	  //Start Advertising
+        err = bt_le_adv_start(adv_param, ad, ARRAY_SIZE(ad), sd, ARRAY_SIZE(sd));	  //Start Advertising
         /*if (err) 
         {
                 LOG_ERR("Advertising failed to start (err %d)\n", err);		
